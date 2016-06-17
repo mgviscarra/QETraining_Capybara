@@ -1,7 +1,7 @@
 Feature: Fill Form
 In order test fill forms
-As I learning how to
-I want to open a browser of roboform and fill the form.
+As I am learning how to do this
+I want to open a browser of "roboform" page and fill its form.
 
 	Scenario: Fill Billing Address and Payment & Shipping Information form 
 		Given I open the borwser "http://www.roboform.com/filling-test-shopping-cart"
