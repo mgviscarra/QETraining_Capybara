@@ -3,11 +3,25 @@ Given(/^I open the borwser "([^"]*)"$/) do |page|
 end
 
 Given(/^I fill following data:$/) do |input|
-	@form_data = input.raw
-	@form_data.each do |item|
-		phone = item[2]
-		phonew = item[9]
-		phonef = item[11]
+	@form_data = input.transpose.rows
+	@form_data.each do |items|
+		typeSelector = items[0][0]
+		@name =  items[0][1,items[0].bytesize]
+		if typeSelector == "t"
+			page.fill_in @name , :with => items[1]
+		elsif typeSelector == "s"
+			page.find(:xpath, "//Select[@name='#{@name}']").find("option[value='#{items[1]}']").click
+		end
+
+		
+		#end
+=begin
+#phone = item[2]
+		#phonew = item[9]
+		#phonef = item[11]
+		#items.each do |item|
+
+
 		page.fill_in '02frstname', :with => item[0]
 		page.fill_in '04lastname', :with => item[1]
 		page.fill_in '20homephon_ac', :with => phone[0,(((phone.bytesize - 4)-3))]
@@ -46,8 +60,9 @@ Given(/^I fill following data:$/) do |input|
 		expect(page.find_field('22faxphone_ac',:type => "text").value()).to eq(phonef[0,(((phonef.bytesize - 4)-3))])
 		expect(page.find_field('22faxphone_pr',:type => "text").value()).to eq(phonef[((phonef.bytesize - 4)-3),3])
 		expect(page.find_field('22faxphone_sf',:type => "text").value()).to eq(phonef[(phonef.bytesize - 4),4])
+=end
 	end
-	
+
 end
 
 Given(/^I fill folloqing Payment & Shipping Information:$/) do |payment|
