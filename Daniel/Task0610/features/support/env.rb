@@ -21,15 +21,9 @@ AfterConfiguration do
         Capybara.default_max_wait_time = default_wait
     end
 
-    #drivers.each do |driver|
-    #Capybara::Selenium::Driver.new(app, :browser => drivers.to_sym)
     Capybara.register_driver :selenium do |app|
-      Capybara::Selenium::Driver.new(app, :browser => drivers.to_sym)
-      #Capybara::Selenium::Driver.new(app, :browser => :firefox)
+      Capybara::Selenium::Driver.new(app, :browser => :chrome)
     end
-        #Capybara.javascript_driver = :chrome
-    #end
-    
 end
 
 def find_config_file(filename)

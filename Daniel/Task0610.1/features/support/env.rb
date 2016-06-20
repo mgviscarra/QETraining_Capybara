@@ -10,14 +10,14 @@ AfterConfiguration do
     configuration = load_app_config_file('env.yml')
     # configure capybara
     config_capybara = configuration['capybara']
-    default_host = "#{config_capybara ['default']['host']} "
+    default_host = "#{config_capybara ['default']['host']}"
     default_wait = config_capybara ['default']['wait_time'].to_i
     drivers = config_capybara ['default']['drivers']
     
     Capybara.configure do |config|
         Capybara.default_driver = :selenium
         Capybara.run_server = false
-        #Capybara.app_host = default_host
+        Capybara.app_host = default_host
         Capybara.default_max_wait_time = default_wait
     end
 
