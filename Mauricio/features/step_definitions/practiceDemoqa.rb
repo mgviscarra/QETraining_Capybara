@@ -15,6 +15,13 @@ When(/^I click on "([^"]*)" button$/) do |button|
 	page.find('input[value="'+button+'"]').click
 end
 
+When(/^I select "([^"]*)" tab$/) do |tab|
+	options = tab.split('-')
+	options.each do |option|
+		page.find(:xpath,'//a[@title=\''+option+'\']').click
+	end
+end
+
 Then(/^I should see "([^"]*)" validations messages with "([^"]*)"$/) do |message, number_validations|
 	expect(page.has_selector?('span', :text => message, :count => number_validations.to_i)).to be true
 end
